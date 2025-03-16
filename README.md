@@ -16,7 +16,7 @@
 
 ```bash
 docker pull maxazure/xiaohongshu-generator-flask
-docker run -p 5000:5000 maxazure/xiaohongshu-generator-flask
+docker run -p 8911:8911 maxazure/xiaohongshu-generator-flask
 ```
 
 ### 本地开发
@@ -44,7 +44,7 @@ python init_db.py
 python run.py
 ```
 
-5. 访问 http://localhost:5000 开始使用
+5. 访问 http://localhost:8911 开始使用
 
 ## 特殊格式指南
 

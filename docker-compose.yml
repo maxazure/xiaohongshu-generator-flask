@@ -5,7 +5,7 @@ services:
     build: .
     image: maxazure/xiaohongshu-generator-flask:latest
     ports:
-      - "5000:5000"
+      - "8911:8911"
     # 取消卷挂载，使用Dockerfile中复制的文件
     # volumes:
     #   - ./:/app
