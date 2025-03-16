@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - 小红书图片生成器{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>{{ post.title }}</h1>
+            <div>
+                <a href="{{ url_for('posts.preview_post', id=post.id) }}" class="btn btn-success me-2">预览</a>
+                <a href="{{ url_for('posts.edit_post', id=post.id) }}" class="btn btn-warning me-2">编辑</a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    删除
+                </button>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>帖子内容</span>
+                <small class="text-muted">
+                    创建于 {{ post.created_at.strftime('%Y-%m-%d %H:%M') }} | 
+                    更新于 {{ post.updated_at.strftime('%Y-%m-%d %H:%M') }}
+                </small>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    {{ content_html|safe }}
+                </div>
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ url_for('posts.list_posts') }}" class="btn btn-secondary">返回列表</a>
+                    <a href="{{ url_for('posts.preview_post', id=post.id) }}" class="btn btn-primary">查看预览</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">确认删除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                您确定要删除标题为 "{{ post.title }}" 的帖子吗？此操作不可逆。
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <form action="{{ url_for('posts.delete_post', id=post.id) }}" method="post">
+                    <button type="submit" class="btn btn-danger">确认删除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
