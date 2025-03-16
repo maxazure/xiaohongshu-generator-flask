@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8911
 
-CMD ["python", "start.py"]
+CMD ["python", "/app/start.py"]

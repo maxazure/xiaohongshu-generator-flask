@@ -6,12 +6,13 @@ services:
     image: maxazure/xiaohongshu-generator-flask:latest
     ports:
       - "8911:8911"
-    # 取消卷挂载，使用Dockerfile中复制的文件
-    # volumes:
-    #   - ./:/app
+    # 重新启用卷挂载，确保路径正确
+    volumes:
+      - ./:/app
     environment:
       - FLASK_APP=run.py
       - FLASK_ENV=development
       - SECRET_KEY=your-secret-key-change-in-production
       - DATABASE_URL=sqlite:///app.db
-    command: ["python", "start.py"]
+    # 使用绝对路径执行start.py
+    command: ["python", "/app/start.py"]
