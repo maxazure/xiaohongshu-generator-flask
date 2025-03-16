@@ -3,6 +3,7 @@ version: '3'
 services:
   web:
     build: .
+    image: maxazure/xiaohongshu-generator-flask:latest
     ports:
       - "5000:5000"
     volumes:
